@@ -38,45 +38,24 @@ const Tetris = () => {
     };
 
     const changeButton = () => {
-        if ({startPauseResume}.startPauseResume === 'Start Game') {
-            setStartPauseResume('Pause');
-            console.log({startPauseResume});
-            startGame();
-        } else if ({startPauseResume}.startPauseResume === 'Pause') {
-            setStartPauseResume('Resume');
-            console.log({startPauseResume});
-            pauseGame();
-            //for testing
+        switch ({startPauseResume}.startPauseResume) {
+            case 'Start Game':
+                setStartPauseResume('Pause');
+                startGame();
+                break;
+            case 'Pause':
+                setStartPauseResume('Resume');
+                pauseGame();
+                break;
+            case 'Resume':
+                setStartPauseResume('Pause');
+                console.log({startPauseResume});
+                resumeGame();
+                break;
         }
-        /*
-        if ({click} % 2 !== 0) {
-            //WHY DIFFERENT FROM LINE ABOVE???
-            /* 
-            setClick(prev => prev + 1);
-            setStartPauseResume('Pause');
-            console.log('STARTED');
-            console.log({startPauseResume});
-            */
-        // startGame();
-        // } else {
-        /*
-            setClick(prev => prev + 1);
-            setStartPauseResume('Resume');
-            console.log('PAUSED');
-            console.log({startPauseResume});
-            */
-        // pauseGame();
-        //*/
     };
 
     const startGame = () => {
-        //  if ({click} % 2 !== 0) {
-        // setClick(prev => prev + 1);
-        console.log('STARTED');
-        console.log('TO PAUSE');
-        if ({startPauseResume} !== 'Pause') {
-            setStartPauseResume('Pause');
-        }
         setStage(createStage());
         setDropTime(1000);
         resetPlayer();
@@ -87,17 +66,11 @@ const Tetris = () => {
     };
 
     const pauseGame = () => {
-        // setClick(prev => prev + 1);
-        console.log('PAUSED');
-        if ({startPauseResume} === 'Pause') {
-            setStartPauseResume('Resume');
-            console.log('TO PAUSE');
-            drop();
-        } else if ({startPauseResume} === 'Resume') {
-            setStartPauseResume('Pause');
-            console.log('TO RESUME');
-            setDropTime(null);
-        }
+        setDropTime(null);
+    };
+
+    const resumeGame = () => {
+        setDropTime(1000 / (level + 1) + 200);
     };
 
     const drop = () => {
