@@ -24,7 +24,7 @@ const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
     const [startPauseResume, setStartPauseResume] = useState('Start Game');
-    const [resumeDropTime, setResumeDropTime] = useState(1100);
+    const [resumeDropTime, setResumeDropTime] = useState(null);
 
     // const [startPause, setStartPause] = useState('Start Game');
 
@@ -39,7 +39,7 @@ const Tetris = () => {
     };
 
     const changeButton = () => {
-        switch ({startPauseResume}.startPauseResume) {
+        switch (startPauseResume) {
             case 'Start Game':
                 setStartPauseResume('Pause');
                 startGame();
@@ -60,41 +60,37 @@ const Tetris = () => {
     };
 
     const startGame = () => {
-        console.log('started');
         setStage(createStage());
         setDropTime(1000);
+        setResumeDropTime(1000);
         resetPlayer();
         setGameOver(false);
         setScore(0);
         setRows(0);
         setLevel(0);
-        console.log({dropTime});
-        console.log({dropTime}.dropTime);
-        console.log(level);
+        console.log(dropTime);
+        console.log(resumeDropTime);
     };
 
     const pauseGame = () => {
-        console.log({dropTime});
-        console.log({dropTime}.dropTime);
+        console.log(dropTime);
+        console.log(resumeDropTime);
+        setResumeDropTime(dropTime);
         setDropTime(null);
     };
 
     const resumeGame = () => {
-        setDropTime(1000 - level * 10);
-        setDropTime({resumeDropTime}.resumeDropTime);
-        console.log({level});
-        console.log({dropTime});
-        console.log({dropTime}.dropTime);
-        console.log({resumeDropTime}.resumeDropTime);
+        setDropTime(resumeDropTime);
+        console.log(resumeDropTime);
     };
 
     const drop = () => {
         // increase level when player has cleared e.g. 10/+ rows
-        if (rows > level * 10) {
+        if (rows >= (level + 1) * 5) {
             setLevel(level + 1);
             // increase speed when level increases (random formula)
             setDropTime(1000 - (level + 1) * 10);
-            setResumeDropTime({dropTime}.dropTime);
+            // setResumeDropTime(dropTime);
         }
         if (!checkCollision(player, stage, {x: 0, y: 1})) {
             updatePlayerPos({x: 0, y: 1, collided: false});
@@ -113,7 +109,8 @@ const Tetris = () => {
     const keyUp = ({keyCode}) => {
         if (!gameOver) {
             if (keyCode === 40) {
-                setDropTime(1000 / (level + 1) + 200);
+                setDropTime(1000 - (level + 1) * 10);
+                console.log(dropTime);
             }
         }
     };
