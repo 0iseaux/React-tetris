@@ -2,7 +2,7 @@
 
 ## Basics
 
-The tetris was built on **react.js**, following the [\***\*tutorial / experiment of Thomas Weibenfalk\*\***](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback` and custom hooks.
+The tetris was built on **react.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback` and custom hooks.
 
 ## Add-ons
 
