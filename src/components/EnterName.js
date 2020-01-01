@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {ScoreContext} from './Tetris';
 import {StyledEnterName} from './styles/StyledEnterName';
+import {Redirect} from 'react-router-dom';
 
 const PORT = 8080;
 
@@ -61,6 +62,7 @@ const EnterName = () => {
     const handleSubmit = e => {
         e.preventDefault();
         savePlayersName();
+        return <Redirect to="/scoreboard/" />;
     };
     return (
         <StyledEnterName>

@@ -14,7 +14,6 @@ import {useGameStatus} from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-import ScoreBoard from './ScoreBoard';
 import EnterName from './EnterName';
 // import ClickContext from './ClickContext';
 
@@ -145,30 +144,34 @@ const Tetris = () => {
     }, dropTime);
 
     return (
-        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
-            <StyledTetris>
-                <ScoreContext.Provider value={score}>
-                    <Stage stage={stage} />
-                    console.log(createStage())
-                    <aside>
-                        {!gameOver ? (
+        <div>
+            <StyledTetrisWrapper>
+                role="button" tabIndex="0" onKeyDown={e => move(e)}
+                onKeyUp={keyUp}>
+                <StyledTetris>
+                    <ScoreContext.Provider value={score}>
+                        <Stage stage={stage} />
+                        console.log(createStage())
+                        <aside>
+                            {!gameOver ? (
+                                <div>
+                                    <Display gameOver={gameOver} text="Game Over :)" />
+                                    <EnterName />
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
                             <div>
-                                <Display gameOver={gameOver} text="Game Over :)" />
-                                <EnterName />
+                                <Display text={`Score: ${score}`} />
+                                <Display text={`Rows: ${rows}`} />
+                                <Display text={`Level: ${level}`} />
+                                <StartButton callback={changeButton} text={startPauseResume} />
                             </div>
-                        ) : (
-                            <div></div>
-                        )}
-                        <div>
-                            <Display text={`Score: ${score}`} />
-                            <Display text={`Rows: ${rows}`} />
-                            <Display text={`Level: ${level}`} />
-                            <StartButton callback={changeButton} text={startPauseResume} />
-                        </div>
-                    </aside>
-                </ScoreContext.Provider>
-            </StyledTetris>
-        </StyledTetrisWrapper>
+                        </aside>
+                    </ScoreContext.Provider>
+                </StyledTetris>
+            </StyledTetrisWrapper>
+        </div>
     );
 };
 
