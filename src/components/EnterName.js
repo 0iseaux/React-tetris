@@ -2,9 +2,10 @@ import React, {useState, useContext} from 'react';
 import {ScoreContext} from './Tetris';
 import {StyledEnterName} from './styles/StyledEnterName';
 
-const PORT = 3000;
+const PORT = 8080;
 
 const EnterName = () => {
+    console.log('EnterName');
     const score = useContext(ScoreContext);
     const [input, setInput] = useState('Player');
     const makeTwoDigits = n => {
@@ -31,9 +32,10 @@ const EnterName = () => {
         return dateTime;
     };
     const savePlayersName = async () => {
+        console.log('savePlayersName');
         console.log({input}, score, getDateTime);
         try {
-            const nameScoreTime = {
+            const nameScoreTimeToSave = {
                 playersName: {input},
                 playersScore: score,
                 dateTime: getDateTime(),
@@ -41,27 +43,30 @@ const EnterName = () => {
             let response = await fetch(`http://localhost:${PORT}/scores`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(nameScoreTime),
+                body: JSON.stringify(nameScoreTimeToSave),
             });
-            let result = await response.json();
-            console.log(result);
+            return await response.json();
             // console.log(result);
         } catch (err) {
             console.error(err);
         }
     };
+    const handleChange = e => {
+        setInput(e.target.value);
+        console.log(e.target.value);
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        savePlayersName();
+    };
     return (
         <StyledEnterName>
-            <form onSubmit={savePlayersName}>
+            <form onSubmit={handleSubmit}>
                 <label>Enter Player's Name:</label>
-                <input
-                    value={input}
-                    type="text"
-                    onChange={e => setInput(e.target.value)}
-                    name="Players Name"
-                />
+                <input name="Players Name" value={input} type="text" onChange={handleChange} />
                 <input type="submit" value="OK!" />
             </form>
         </StyledEnterName>
