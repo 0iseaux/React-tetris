@@ -36,7 +36,7 @@ const EnterName = () => {
         console.log({input}, score, getDateTime);
         try {
             const nameScoreTimeToSave = {
-                playersName: {input},
+                playersName: input,
                 playersScore: score,
                 dateTime: getDateTime(),
             };
