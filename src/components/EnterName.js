@@ -1,14 +1,21 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect, useRef} from 'react';
 import {ScoreContext} from './Tetris';
+import ScoreBoard from './ScoreBoard';
+
 import {StyledEnterName} from './styles/StyledEnterName';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 
 const PORT = 8080;
 
 const EnterName = () => {
+    // this.props.history.push('/scoreboard');
     console.log('EnterName');
     const score = useContext(ScoreContext);
     const [input, setInput] = useState('Player');
+    const [save, setSave] = useState(false);
+
+    const refPreventFirstFire = useRef(true);
+
     const makeTwoDigits = n => {
         if (n < 10) {
             n = n.toString();
@@ -62,14 +69,58 @@ const EnterName = () => {
     const handleSubmit = e => {
         e.preventDefault();
         savePlayersName();
+        setSave(true);
+        this.props.history.push('/scoreboard');
+        return () => {
+            return <Redirect to="/scoreboard/" />;
+        };
+    };
+
+    const toScoreBoard = () => {
+        console.log('toScoreBoard');
+        this.props.history.push('/scoreboard');
         return <Redirect to="/scoreboard/" />;
     };
+
+    useEffect(() => {
+        console.log('useEffect fired!');
+        console.log({save});
+        console.log('ref', refPreventFirstFire.current);
+        if (refPreventFirstFire.current) {
+            console.log('ref', refPreventFirstFire.current);
+            refPreventFirstFire.current = false;
+            return;
+        }
+        if (save) {
+            console.log('save fired!');
+            console.log('ref', refPreventFirstFire.current);
+            console.log({save}); // true
+            // setSave(prevSave => (prevSave = false));
+            console.log({save}); // true
+            // this.props.history.push('/scoreboard');
+            console.log('Above return');
+
+            return () => {
+                // this.props.history.push('/scoreboard');
+                console.log(this.props.history);
+                console.log('Inside return');
+                toScoreBoard();
+                return () => {
+                    return <Redirect to="/scoreboard/" />;
+                };
+                // return <ScoreBoard />;
+            };
+        }
+    }, [save]);
+
     return (
         <StyledEnterName>
             <form onSubmit={handleSubmit}>
                 <label>Enter Player's Name:</label>
                 <input name="Players Name" value={input} type="text" onChange={handleChange} />
-                <input type="submit" value="OK!" />
+                <Link to="/scoreboard">
+                    <input type="submit" value="OK!" />
+                </Link>
             </form>
         </StyledEnterName>
     );

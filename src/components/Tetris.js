@@ -15,11 +15,6 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 import EnterName from './EnterName';
-// import ClickContext from './ClickContext';
-
-/* const Context = () => {
-    return <ClickContext.Provide></ClickContext.Provide>;
-}; */
 
 const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
@@ -145,15 +140,17 @@ const Tetris = () => {
 
     return (
         <div>
-            <StyledTetrisWrapper>
-                role="button" tabIndex="0" onKeyDown={e => move(e)}
+            <StyledTetrisWrapper
+                role="button"
+                tabIndex="0"
+                onKeyDown={e => move(e)}
                 onKeyUp={keyUp}>
                 <StyledTetris>
                     <ScoreContext.Provider value={score}>
                         <Stage stage={stage} />
                         console.log(createStage())
                         <aside>
-                            {!gameOver ? (
+                            {!gameOver ? ( // REMOVE ! IN THE END
                                 <div>
                                     <Display gameOver={gameOver} text="Game Over :)" />
                                     <EnterName />
