@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import {ScoreContext} from './Tetris';
 import ScoreBoard from './ScoreBoard';
+import ScoreTable from './ScoreTable';
 
 import {navigate} from 'hookrouter';
 
@@ -40,6 +41,7 @@ const EnterName = () => {
         console.log(dateTime);
         return dateTime;
     };
+
     const savePlayersName = async () => {
         console.log('savePlayersName');
         console.log({input}, score, getDateTime);
@@ -61,6 +63,7 @@ const EnterName = () => {
             console.error(err);
         }
     };
+
     const handleChange = e => {
         setInput(e.target.value);
         console.log(e.target.value);
@@ -70,6 +73,10 @@ const EnterName = () => {
         e.preventDefault();
         savePlayersName();
         setSave(true);
+        return () => {
+            console.log('ScoreTable');
+            return ScoreTable();
+        };
     };
 
     useEffect(() => {
