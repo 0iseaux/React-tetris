@@ -43,6 +43,7 @@ export const StyledScoreTable = styled.div`
     tr {
         padding: 15px;
         text-align: center;
+        line-height: 1.5;
     }
 
     .rank {

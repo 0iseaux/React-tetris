@@ -1,4 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import {useRoutes, A} from 'hookrouter';
+import Routes from '../Routes';
+
+import BackButton from './BackButton';
 
 const PORT = 8080;
 
@@ -35,7 +39,7 @@ const ScoreTable = () => {
         hr = makeTwoDigits(hr);
         min = makeTwoDigits(min);
         sec = makeTwoDigits(sec);
-        return yr + '-' + mth + '-' + day + '-' + hr + '-' + min + '-' + sec;
+        return yr + '-' + mth + '-' + day + ' / ' + hr + '-' + min + '-' + sec;
     };
 
     const renderTableData = () => {
@@ -59,19 +63,29 @@ const ScoreTable = () => {
         });
     };
 
+    useRoutes(Routes);
+
     useEffect(() => {
         fetchTopScoresData();
     }, []);
 
     return (
         <div>
-            <h2 id="title">Top Scores</h2>
-            <table id="topScoreBoard">
-                <tbody>
-                    <tr>{renderTableHeader()}</tr>
-                    {renderTableData()}
-                </tbody>
-            </table>
+            <div>
+                <h2 id="title">Top Scores</h2>
+                <table id="topScoreBoard">
+                    <tbody>
+                        <tr>{renderTableHeader()}</tr>
+                        {renderTableData()}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <br />
+                <A href="/">
+                    <BackButton text="Take me back!" />
+                </A>
+            </div>
         </div>
     );
 };
