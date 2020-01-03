@@ -11,21 +11,41 @@ export const StyledTetrisWrapper = styled.div`
 
 export const StyledScoreBoard = styled.div`
 
-    display: grid;
-    grid-template-rows: repeat(11, 1fr);
-    grid-template-columns: 3fr 3fr 4fr ; 
-    grid-gap: 1px; 
     border: 2px solid #333; 
     border-color: white;
     width:100%; 
-    max-width: 80vw; 
+    max-width: 90vw; 
     background: #111;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
+    margin: 30px;
     border-radius: 20px;
     color: white;
     background: #333;
     font-family: Pixel, Arial, Helvetica, sans-serif;
-    fontsize: 1rem;
+    font-size: 1.5rem;
     );
+`;
+
+export const StyledScoreTable = styled.div`
+    text-align: center;
+    width: 80vw;
+    padding: 10px 10px 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    th {
+        padding: 15px;
+        text-align: center;
+        color: yellow;
+    }
+
+    tr {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .rank {
+        color: orange;
+    }
 `;

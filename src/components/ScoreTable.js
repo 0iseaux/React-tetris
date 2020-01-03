@@ -43,7 +43,7 @@ const ScoreTable = () => {
             const {player_name, score, date_time} = topPlayer;
             return (
                 <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td class="rank">{index + 1}</td>
                     <td>{player_name}</td>
                     <td>{score}</td>
                     <td>{convertDate(date_time)}</td>
@@ -65,7 +65,7 @@ const ScoreTable = () => {
 
     return (
         <div>
-            <h1 id="title">Top Scores</h1>
+            <h2 id="title">Top Scores</h2>
             <table id="topScoreBoard">
                 <tbody>
                     <tr>{renderTableHeader()}</tr>
