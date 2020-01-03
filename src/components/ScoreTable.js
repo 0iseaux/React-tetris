@@ -5,79 +5,71 @@ const PORT = 8080;
 const ScoreTable = () => {
     const [topScoreBoard, setTopScoreBoard] = useState([]);
 
-    const fetchTopScores = async () => {
-        let topPlayers = [];
+    const fetchTopScoresData = async () => {
         try {
             let response = await fetch(`http://localhost:${PORT}/topscores`);
             let topScores = await response.json();
-            console.log('topScores', topScores);
-            setTopScoreBoard(topScores);
-            console.log(topScores);
-            for (const topScore of topScores) {
-                // not iterable
-                const topPlayer = [
-                    topScore['player_name'],
-                    topScore['score'],
-                    topScore['date_time'],
-                ];
-                topPlayers.push(topPlayer);
-            }
-
-            return () => {
-                console.log(topPlayers);
-                {
-                    /*topPlayers.map((topPlayer, index) => {
-                    const {name, score, dateTime} = topPlayer;
-                    return (
-                        <tr key={dateTime}>
-                            <td>{name}</td>
-                            <td>{score}</td>
-                            <td>{dateTime}</td>
-                        </tr>
-                    );
-                });*/
-                }
-            };
+            setTopScoreBoard(topScores['topScores']);
         } catch (err) {
             console.error(err);
         }
     };
-    /*
+
+    const makeTwoDigits = n => {
+        if (n < 10) {
+            n = n.toString();
+            n = '0' + n;
+        }
+        return n;
+    };
+
+    const convertDate = fullDateTime => {
+        let date = new Date(fullDateTime);
+        let yr = date.getFullYear();
+        let mth = date.getMonth() + 1;
+        let day = date.getDate();
+        let hr = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+        mth = makeTwoDigits(mth);
+        hr = makeTwoDigits(hr);
+        min = makeTwoDigits(min);
+        sec = makeTwoDigits(sec);
+        return yr + '-' + mth + '-' + day + '-' + hr + '-' + min + '-' + sec;
+    };
+
     const renderTableData = () => {
-        return players.map((player, index) => {
-            const {id, name, score, date} = player;
+        return topScoreBoard.map((topPlayer, index) => {
+            const {player_name, score, date_time} = topPlayer;
             return (
-                <tr key={id}>
-                    <td>{id}</td>
-                    <td>{name}</td>
+                <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{player_name}</td>
                     <td>{score}</td>
-                    <td>{date}</td>
+                    <td>{convertDate(date_time)}</td>
                 </tr>
             );
         });
     };
 
     const renderTableHeader = () => {
-        let header = Object.keys(players[0]);
-        return header.map((key, index) => {
-            return <th key={index}>{key.toUpperCase()}</th>;
+        let header = ['Rank', `Player's Name`, 'Score', `Date/Time`];
+        return header.map((item, index) => {
+            return <th key={index}>{item}</th>;
         });
     };
-*/
-    useEffect(() => {
-        console.log('useEffect fired!');
-        console.log(topScoreBoard);
 
-        fetchTopScores();
-    }, [topScoreBoard]);
+    useEffect(() => {
+        fetchTopScoresData();
+    }, []);
 
     return (
         <div>
-            <h1 id="title">Top Scores (under construction)</h1>
-            <table id="students">
+            <h1 id="title">Top Scores</h1>
+            <table id="topScoreBoard">
                 <tbody>
-                    {/*<tr>{renderTableHeader()}</tr>
-                    {renderTableData()}*/}
+                    <tr>{renderTableHeader()}</tr>
+                    {renderTableData()}
                 </tbody>
             </table>
         </div>
@@ -85,28 +77,3 @@ const ScoreTable = () => {
 };
 
 export default ScoreTable;
-
-///
-
-/*
-        try {
-            let response = await fetch(`http://localhost:${PORT}/topscores`);
-            let topScores = await response.json();
-            console.log(topScores);
-            setTable({topScores}.data);
-
-            return () => {
-                topScores.map((topPlayer, index) => {
-                    const {name, score, dateTime} = topPlayer;
-                    return (
-                        <tr key={dateTime}>
-                            <td>{name}</td>
-                            <td>{score}</td>
-                            <td>{dateTime}</td>
-                        </tr>
-                    );
-                });
-            };
-        } catch (err) {
-            console.error(err);
-        }*/
