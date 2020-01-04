@@ -1,5 +1,7 @@
 # React Tetris (frontend)
 
+# [**PLAY!**](http://tetris.fyr.fyi/)
+
 ## Basics
 
 -   This tetris game was built on **React.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback`, custom hooks and `styled-components`

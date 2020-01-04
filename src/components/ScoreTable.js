@@ -18,7 +18,8 @@ const ScoreTable = () => {
         } catch (err) {
             console.error(err);
         }
-    
+    };
+
     const makeTwoDigits = n => {
         if (n < 10) {
             n = n.toString();
