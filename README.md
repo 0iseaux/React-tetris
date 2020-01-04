@@ -2,9 +2,9 @@
 
 ## Basics
 
--   The tetris was built on **React.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback`, custom hooks and `styled-components`
+-   This tetris game was built on **React.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback`, custom hooks and `styled-components`
 
--   Connected to [**rReact-tetris-backend**](https://github.com/0iseaux/React-tetris-backend) built on **Node.js** and **MySQL**
+-   Connected to [**React-tetris-backend**](https://github.com/0iseaux/React-tetris-backend) built on **Node.js** and **MySQL**
 
 ## Add-ons
 
@@ -18,14 +18,14 @@
 
 -   Use of other hooks like `useRef`, `useContext`
 
--   Use of module `hookrouter` (instead of `react-router-dom`) for cleaner implementation of routing in functional components, e.g. by using `navigate` instead of (`Redirect`)
+-   Use of module `hookrouter` (instead of `react-router-dom`) for cleaner implementation of routing in functional components, e.g. by using `navigate()` instead of (`<Redirect>`)
 
 ## Credits
 
 -   The font **Pixel LCD-7** was authored by [**Sizenko Alexander**](www.styleseven.com)
 -   `useInterval.js` hook was created by Dan Abramov
 
-## Minor issues (room for improvement)
+## Outstanding / for improvement (non-exhaustive list)
 
--   UI, responsiveness
+-   UI (e.g. alignment, margin) and responsiveness
 -   Text on the _Start / Pause / Resume / Try Again_ button would read _Start_ instead of _Try Again_ when Player returns from _Score Board_ page
