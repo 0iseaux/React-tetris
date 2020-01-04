@@ -6,7 +6,7 @@ import {navigate} from 'hookrouter';
 
 import {StyledEnterName} from './styles/StyledEnterName';
 
-const DOMAIN = 'tetris.fyr.fyi';
+const DOMAIN = 'tetris-api.fyr.fyi';
 
 const EnterName = () => {
     const score = useContext(ScoreContext);

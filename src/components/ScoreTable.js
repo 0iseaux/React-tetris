@@ -4,7 +4,7 @@ import Routes from '../Routes';
 
 import BackButton from './BackButton';
 
-const DOMAIN = 'tetris.fyr.fyi';
+const DOMAIN = 'tetris-api.fyr.fyi';
 
 const ScoreTable = () => {
     const [topScoreBoard, setTopScoreBoard] = useState([]);
@@ -18,8 +18,7 @@ const ScoreTable = () => {
         } catch (err) {
             console.error(err);
         }
-    };
-
+    
     const makeTwoDigits = n => {
         if (n < 10) {
             n = n.toString();
