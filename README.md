@@ -2,7 +2,13 @@
 
 # [**PLAY!**](http://tetris.fyr.fyi/)
 
-## Basics
+## Game control: arrow keys:
+
+-   LEFT / RIGHT: move tetrimino to left or right
+-   DOWN: speed up falling of tetrimino
+-   UP: rotate tetrimino
+
+## Basic info
 
 -   This tetris game was built on **React.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback`, custom hooks and `styled-components`
 
@@ -30,4 +36,5 @@
 ## Outstanding / for improvement (non-exhaustive list)
 
 -   UI (e.g. alignment, margin) and responsiveness
+-   Player can still play using arrow keys after pressing _Pause_ --> need to disable
 -   Text on the _Start / Pause / Resume / Try Again_ button would read _Start_ instead of _Try Again_ when Player returns from _Score Board_ page
