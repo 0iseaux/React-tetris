@@ -4,9 +4,9 @@
 
 ## Game control: arrow keys:
 
--   LEFT / RIGHT: move tetrimino to left or right
--   DOWN: speed up falling of tetrimino
--   UP: rotate tetrimino
+-   LEFT / RIGHT: move tetrimino to left or right by 1 unit
+-   DOWN: increase dropping speed of tetrimino
+-   UP: rotate tetrimino by 90 degrees
 
 ## Basic info
 
