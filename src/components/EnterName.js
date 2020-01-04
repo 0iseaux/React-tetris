@@ -1,14 +1,11 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import {ScoreContext} from './Tetris';
-import ScoreBoard from './ScoreBoard';
 import ScoreTable from './ScoreTable';
 
 import {navigate} from 'hookrouter';
 
 import {StyledEnterName} from './styles/StyledEnterName';
-// import {Redirect, Link} from 'react-router-dom';
 
-const PORT = 8080;
 const DOMAIN = 'tetris.fyr.fyi';
 
 const EnterName = () => {
