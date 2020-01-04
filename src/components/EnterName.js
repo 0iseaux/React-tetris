@@ -9,6 +9,7 @@ import {StyledEnterName} from './styles/StyledEnterName';
 // import {Redirect, Link} from 'react-router-dom';
 
 const PORT = 8080;
+const DOMAIN = 'tetris.fyr.fyi';
 
 const EnterName = () => {
     const score = useContext(ScoreContext);
@@ -48,7 +49,7 @@ const EnterName = () => {
                 playersScore: score,
                 dateTime: getDateTime(),
             };
-            let response = await fetch(`http://localhost:${PORT}/scores`, {
+            let response = await fetch(`https://${DOMAIN}/scores`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

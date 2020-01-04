@@ -4,7 +4,7 @@ import Routes from '../Routes';
 
 import BackButton from './BackButton';
 
-const PORT = 8080;
+const DOMAIN = 'tetris.fyr.fyi';
 
 const ScoreTable = () => {
     const [topScoreBoard, setTopScoreBoard] = useState([]);
@@ -12,7 +12,7 @@ const ScoreTable = () => {
 
     const fetchTopScoresData = async () => {
         try {
-            let response = await fetch(`http://localhost:${PORT}/topscores`);
+            let response = await fetch(`https://${DOMAIN}/topscores`);
             let topScores = await response.json();
             setTopScoreBoard(topScores['topScores']);
         } catch (err) {
@@ -66,7 +66,7 @@ const ScoreTable = () => {
 
     const fetchRank = async () => {
         try {
-            let response = await fetch(`http://localhost:${PORT}/rankscores`);
+            let response = await fetch(`https://${DOMAIN}/rankscores`);
             let rank = await response.json();
             rank = rank['rank'][0]['COUNT(*)'] + 1;
             setRank(rank);

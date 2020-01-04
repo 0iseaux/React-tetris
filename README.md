@@ -1,16 +1,31 @@
-# React Tetris
+# React Tetris (frontend)
 
 ## Basics
 
-The tetris was built on **react.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback` and custom hooks.
+-   The tetris was built on **React.js**, following the [**tutorial / experiment of Thomas Weibenfalk**](https://www.youtube.com/watch?v=ZGOaCxX8HIU), using react hooks like `useState`, `useEffect`, `useCallback`, custom hooks and `styled-components`
+
+-   Connected to [**rReact-tetris-backend**](https://github.com/0iseaux/React-tetris-backend) built on **Node.js** and **MySQL**
 
 ## Add-ons
 
-A _Pause/ Resume / Try Again_ button was added.
+-   A _Start / Pause / Resume / Try Again_ button
 
-A _score board_ using **node.js** and **SQL** is coming very soon.
+-   An component for input of Player's name at Gameover, saving also her/ his score and date/time, rendered at \*_Game Over_
+
+-   A _Score Board_ page showing Player's rank and top ten players' names, scores and record time/date
+
+-   A _Back_ button on the _Score Board_ page to redirect back to the main page
+
+-   Use of other hooks like `useRef`, `useContext`
+
+-   Use of module `hookrouter` (instead of `react-router-dom`) for cleaner implementation of routing in functional components, e.g. by using `navigate` instead of (`Redirect`)
 
 ## Credits
 
 -   The font **Pixel LCD-7** was authored by [**Sizenko Alexander**](www.styleseven.com)
 -   `useInterval.js` hook was created by Dan Abramov
+
+## Minor issues (room for improvement)
+
+-   UI, responsiveness
+-   Text on the _Start / Pause / Resume / Try Again_ button would read _Start_ instead of _Try Again_ when Player returns from _Score Board_ page
