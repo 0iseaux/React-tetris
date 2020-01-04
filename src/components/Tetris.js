@@ -148,9 +148,8 @@ const Tetris = () => {
                 <StyledTetris>
                     <ScoreContext.Provider value={score}>
                         <Stage stage={stage} />
-                        console.log(createStage())
                         <aside>
-                            {!gameOver ? ( // REMOVE ! IN THE END
+                            {gameOver ? (
                                 <div>
                                     <Display gameOver={gameOver} text="Game Over :)" />
                                     <EnterName />

@@ -23,7 +23,7 @@ export const StyledScoreBoard = styled.div`
     color: white;
     background: #333;
     font-family: Pixel, Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     );
 `;
 
@@ -48,5 +48,10 @@ export const StyledScoreTable = styled.div`
 
     .rank {
         color: orange;
+    }
+
+    #ranking {
+        color: red;
+        line-height: 2;
     }
 `;

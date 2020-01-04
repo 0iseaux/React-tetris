@@ -8,6 +8,7 @@ const PORT = 8080;
 
 const ScoreTable = () => {
     const [topScoreBoard, setTopScoreBoard] = useState([]);
+    const [rank, setRank] = useState();
 
     const fetchTopScoresData = async () => {
         try {
@@ -47,7 +48,7 @@ const ScoreTable = () => {
             const {player_name, score, date_time} = topPlayer;
             return (
                 <tr key={index}>
-                    <td class="rank">{index + 1}</td>
+                    <td className="rank">{index + 1}</td>
                     <td>{player_name}</td>
                     <td>{score}</td>
                     <td>{convertDate(date_time)}</td>
@@ -57,16 +58,37 @@ const ScoreTable = () => {
     };
 
     const renderTableHeader = () => {
-        let header = ['Rank', `Player's Name`, 'Score', `Date/Time`];
+        let header = ['Rank', `Player's Name`, 'Score', `Date / Time`];
         return header.map((item, index) => {
             return <th key={index}>{item}</th>;
         });
+    };
+
+    const fetchRank = async () => {
+        try {
+            let response = await fetch(`http://localhost:${PORT}/rankscores`);
+            let rank = await response.json();
+            rank = rank['rank'][0]['COUNT(*)'] + 1;
+            setRank(rank);
+            showRank(rank);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const showRank = ranking => {
+        if (rank > 10) {
+            return `Oops! You need to beat ${rank - 1} more records to get on the Chart...`;
+        } else {
+            return `Congratulations! Your ranking is ${rank}!`;
+        }
     };
 
     useRoutes(Routes);
 
     useEffect(() => {
         fetchTopScoresData();
+        fetchRank();
     }, []);
 
     return (
@@ -79,6 +101,9 @@ const ScoreTable = () => {
                         {renderTableData()}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <h3 id="ranking">{showRank()}</h3>
             </div>
             <div>
                 <br />

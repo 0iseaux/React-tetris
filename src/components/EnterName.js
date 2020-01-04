@@ -11,7 +11,6 @@ import {StyledEnterName} from './styles/StyledEnterName';
 const PORT = 8080;
 
 const EnterName = () => {
-    console.log('EnterName');
     const score = useContext(ScoreContext);
     const [input, setInput] = useState('Player');
     const [save, setSave] = useState(false);
@@ -43,8 +42,6 @@ const EnterName = () => {
     };
 
     const savePlayersName = async () => {
-        console.log('savePlayersName');
-        console.log({input}, score, getDateTime);
         try {
             const nameScoreTimeToSave = {
                 playersName: input,
@@ -66,7 +63,6 @@ const EnterName = () => {
 
     const handleChange = e => {
         setInput(e.target.value);
-        console.log(e.target.value);
     };
 
     const handleSubmit = e => {
@@ -74,15 +70,11 @@ const EnterName = () => {
         savePlayersName();
         setSave(true);
         return () => {
-            console.log('ScoreTable');
             return ScoreTable();
         };
     };
 
     useEffect(() => {
-        console.log('useEffect fired!');
-        console.log({save});
-        console.log('ref', refPreventFirstFire.current);
         if (refPreventFirstFire.current) {
             refPreventFirstFire.current = false;
             return;
