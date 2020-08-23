@@ -1,6 +1,6 @@
 # React Tetris (frontend)
 
-## Gameplay temporarily unavailable (hosting server pending)
+## Gameplay temporarily unavailable
 
 ## Game control: arrow keys:
 
