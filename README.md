@@ -1,6 +1,6 @@
 # React Tetris (frontend)
 
-# [**PLAY!**](http://tetris.fyr.fyi/)
+## Gameplay temporarily unavailable (hosting server pending)
 
 ## Game control: arrow keys:
 
